@@ -13,12 +13,20 @@ public class UserMapper {
 
     public UserDto UserToUserDto(User user) {
 
-        return null;
+        return UserDto.builder()
+                .userId(user.getUserId())
+                .name(user.getName())
+                .surname(user.getSurname())
+                .build();
     }
 
     public User UserDtoToUser(UserDto userDto) {
 
-        return null;
+        return User.builder()
+                .userId(userDto.getUserId())
+                .name(userDto.getName())
+                .surname(userDto.getSurname())
+                .build();
     }
 
 }
