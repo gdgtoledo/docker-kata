@@ -1,6 +1,6 @@
 package com.gdgtoledo.dockerkata.userservice.controller;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,27 +34,30 @@ public class UserController
 	@ResponseBody
 	public UserDto getUserById(@PathVariable("id") String id)
 	{
-		return userMapper.UserToUserDto(userService.getUserById(id));
+		UserDto userDto = userMapper.userToUserDto(userService.getUserById(id));
+		userDto.setAddresses(addressMapper.addressSetToAddressDtoSet(userService.getAllAddressesByUserId(id)));
+		userDto.setPhones(phoneMapper.phoneSetToPhoneDtoSet(userService.getAllPhonesByUserId(id)));
+		return userDto;
 	}
 	
 	@RequestMapping(path = "all", method = RequestMethod.GET)
 	@ResponseBody
-	public Collection<UserDto> getAllUser()
+	public Set<UserDto> getAllUser()
 	{
-		return userMapper.UserCollectionToUserDtoCollection(userService.getAllUser());
+		return userMapper.userSetToUserDtoSet(userService.getAllUser());
 	}
 	
 	@RequestMapping(path = "{id}/address/all", method = RequestMethod.GET)
 	@ResponseBody
-	public Collection<AddressDto> getAllAddressesByUserId(@PathVariable("id") String id)
+	public Set<AddressDto> getAllAddressesByUserId(@PathVariable("id") String id)
 	{
-		return addressMapper.AddressCollectionToAddressDtoCollection(userService.getAllAddressesByUserId(id));
+		return addressMapper.addressSetToAddressDtoSet(userService.getAllAddressesByUserId(id));
 	}
 	
 	@RequestMapping(path = "{id}/phone/all", method = RequestMethod.GET)
 	@ResponseBody
-	public Collection<PhoneDto> getAllPhonesByUserId(@PathVariable("id") String id)
+	public Set<PhoneDto> getAllPhonesByUserId(@PathVariable("id") String id)
 	{
-		return phoneMapper.PhoneCollectionToPhoneDtoCollection(userService.getAllPhonesByUserId(id));
+		return phoneMapper.phoneSetToPhoneDtoSet(userService.getAllPhonesByUserId(id));
 	}
 }
