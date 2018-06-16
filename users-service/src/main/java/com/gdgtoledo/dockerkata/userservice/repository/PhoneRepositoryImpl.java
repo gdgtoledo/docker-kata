@@ -16,8 +16,8 @@ import java.util.Set;
 @Repository
 public class PhoneRepositoryImpl implements PhoneRepository {
 
-    @Value("${environment.SERVER_URL}")
-    private String enpoint;
+    @Value("${server.url:'http://localhost:8081/phone'}")
+    private String endpoint = "http://localhost:8081/phone";
 
     @Override
     public Set<Phone> getPhones(String userId) {
@@ -27,7 +27,7 @@ public class PhoneRepositoryImpl implements PhoneRepository {
                 .decoder(new GsonDecoder())
                 .logger(new Slf4jLogger(PhoneClient.class))
                 .logLevel(Logger.Level.FULL)
-                .target(PhoneClient.class, enpoint);
+                 .target(PhoneClient.class, endpoint);
 
          return phoneClient.getPhones(userId);
     }
