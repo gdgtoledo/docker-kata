@@ -1,6 +1,5 @@
 package com.gdgtoledo.dockerkata.userservice.controller;
 
-import java.util.Collection;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +35,8 @@ public class UserController
 	public UserDto getUserById(@PathVariable("id") String id)
 	{
 		UserDto userDto = userMapper.userToUserDto(userService.getUserById(id));
-//		userDto.setAddresses(addressMapper.addressSetToAddressDtoSet(userService.getAllAddressesByUserId(id)));
-//		userDto.setPhones(phoneMapper.phoneSetToPhoneDtoSet(userService.getAllPhonesByUserId(id)));
+		userDto.setAddresses(addressMapper.addressSetToAddressDtoSet(userService.getAllAddressesByUserId(id)));
+		userDto.setPhones(phoneMapper.phoneSetToPhoneDtoSet(userService.getAllPhonesByUserId(id)));
 		return userDto;
 	}
 	
