@@ -1,6 +1,6 @@
 package com.gdgtoledo.dockerkata.userservice.service;
 
-import java.util.Collection;
+import java.util.Set;
 
 import com.gdgtoledo.dockerkata.userservice.model.Address;
 import com.gdgtoledo.dockerkata.userservice.model.Phone;
@@ -11,10 +11,10 @@ public interface UserService {
 
 	User getUserById(String id);
 
-	Collection<User> getAllUser();
+	Set<User> getAllUser();
 
-	Collection<Address> getAllAddressesByUserId(String id);
+	Set<Address> getAllAddressesByUserId(String id);
 
-	Collection<Phone> getAllPhonesByUserId(String id);
+	Set<Phone> getAllPhonesByUserId(String id);
 
 }

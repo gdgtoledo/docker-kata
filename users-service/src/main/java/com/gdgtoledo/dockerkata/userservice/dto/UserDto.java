@@ -17,7 +17,7 @@ public class UserDto {
     private String surname;
     private Instant birthdate;
 
-    Set<AddressDto> address;
-    Set<PhoneDto> phone;
+    Set<AddressDto> addresses;
+    Set<PhoneDto> phones;
 
 }

@@ -1,6 +1,6 @@
 package com.gdgtoledo.dockerkata.userservice.mapper;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -10,17 +10,17 @@ import com.gdgtoledo.dockerkata.userservice.model.Address;
 @Component
 public class AddressMapper {
 	
-	public AddressDto AddressToAddressDto(Address address) {
+	public AddressDto addressToAddressDto(Address address) {
 
         return null;
     }
 
-    public Address AddressDtoToAddress(AddressDto addressDto) {
+    public Address addressDtoToAddress(AddressDto addressDto) {
 
         return null;
     }
     
-    public Collection<AddressDto> AddressCollectionToAddressDtoCollection(Collection<Address> addresses)
+    public Set<AddressDto> addressSetToAddressDtoSet(Set<Address> addresses)
     {
     	return null;
     }
