@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PhoneRepositoryImplTest {
-    PhoneRepositoryImpl phoneRepositoryImpl = new PhoneRepositoryImpl();
+    private PhoneRepositoryImpl phoneRepositoryImpl = new PhoneRepositoryImpl();
 
     @Test
     public void testGetPhones() throws Exception {
@@ -17,7 +17,8 @@ public class PhoneRepositoryImplTest {
 
         Assert.assertEquals(
                 new HashSet<Phone>(Arrays.asList(
-                        new Phone("phoneNumber", "company", "type"))), result);
+                        new Phone("phoneNumber", "company", "type"))),
+                result);
     }
 
 }
