@@ -18,8 +18,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 import static org.mockito.Mockito.*;
 
@@ -43,37 +43,40 @@ public class UserControllerTest {
     @Test
     public void testGetUserById() throws Exception {
         when(userService.getUserById(any())).thenReturn(new User("userId", "name", "surname", null));
-        when(userMapper.UserToUserDto(any())).thenReturn(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("number")))));
+        when(userService.getAllAddressesByUserId(any())).thenReturn(new HashSet<Address>(Arrays.asList(new Address("street", Integer.valueOf(0), "city", "zip"))));
+        when(userService.getAllPhonesByUserId(any())).thenReturn(new HashSet<Phone>(Arrays.asList(new Phone("phoneNumber", "company", "type"))));
+        when(userMapper.userToUserDto(any())).thenReturn(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type")))));
+        when(phoneMapper.phoneSetToPhoneDtoSet(any())).thenReturn(new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type"))));
+        when(addressMapper.addressSetToAddressDtoSet(any())).thenReturn(new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))));
 
         UserDto result = userController.getUserById("id");
-        Assert.assertEquals(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("number")))), result);
+        Assert.assertEquals(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type")))), result);
     }
 
     @Test
     public void testGetAllUser() throws Exception {
-        when(userService.getAllUser()).thenReturn(Arrays.<User>asList(new User("userId", "name", "surname", null)));
-        when(userMapper.UserCollectionToUserDtoCollection(any())).thenReturn(Arrays.<UserDto>asList(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("number"))))));
+        when(userService.getAllUser()).thenReturn(new HashSet<User>(Arrays.asList(new User("userId", "name", "surname", null))));
+        when(userMapper.userSetToUserDtoSet(any())).thenReturn(new HashSet<UserDto>(Arrays.asList(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type")))))));
 
-        Collection<UserDto> result = userController.getAllUser();
-        Assert.assertEquals(Arrays.<UserDto>asList(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("number"))))), result);
+        Set<UserDto> result = userController.getAllUser();
+        Assert.assertEquals(new HashSet<UserDto>(Arrays.asList(new UserDto("userId", "name", "surname", null, new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type")))))), result);
     }
 
     @Test
     public void testGetAllAddressesByUserId() throws Exception {
-        when(userService.getAllAddressesByUserId(any())).thenReturn(Arrays.<Address>asList(new Address("fullAddress")));
-        when(addressMapper.AddressCollectionToAddressDtoCollection(any())).thenReturn(Arrays.<AddressDto>asList(new AddressDto("street", Integer.valueOf(0), "city", "zip")));
+        when(userService.getAllAddressesByUserId(any())).thenReturn(new HashSet<Address>(Arrays.asList(new Address("street", Integer.valueOf(0), "city", "zip"))));
+        when(addressMapper.addressSetToAddressDtoSet(any())).thenReturn(new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))));
 
-        Collection<AddressDto> result = userController.getAllAddressesByUserId("id");
-        Assert.assertEquals(Arrays.<AddressDto>asList(new AddressDto("street", Integer.valueOf(0), "city", "zip")), result);
+        Set<AddressDto> result = userController.getAllAddressesByUserId("id");
+        Assert.assertEquals(new HashSet<AddressDto>(Arrays.asList(new AddressDto("street", Integer.valueOf(0), "city", "zip"))), result);
     }
 
     @Test
     public void testGetAllPhonesByUserId() throws Exception {
-        when(userService.getAllPhonesByUserId(any())).thenReturn(Arrays.<Phone>asList(new Phone("phoneNumber", "company", "type")));
-        when(phoneMapper.PhoneCollectionToPhoneDtoCollection(any())).thenReturn(Arrays.<PhoneDto>asList(new PhoneDto("number")));
+        when(userService.getAllPhonesByUserId(any())).thenReturn(new HashSet<Phone>(Arrays.asList(new Phone("phoneNumber", "company", "type"))));
+        when(phoneMapper.phoneSetToPhoneDtoSet(any())).thenReturn(new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type"))));
 
-        Collection<PhoneDto> result = userController.getAllPhonesByUserId("id");
-        Assert.assertEquals(Arrays.<PhoneDto>asList(new PhoneDto("number")), result);
+        Set<PhoneDto> result = userController.getAllPhonesByUserId("id");
+        Assert.assertEquals(new HashSet<PhoneDto>(Arrays.asList(new PhoneDto("phoneNumber", "company", "type"))), result);
     }
-
 }
