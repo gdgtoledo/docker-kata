@@ -1,6 +1,6 @@
 package com.gdgtoledo.dockerkata.userservice.service;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService
 	 * @see com.gdgtoledo.dockerkata.userservice.service.UserService#getAllUser()
 	 */
 	@Override
-	public Collection<User> getAllUser()
+	public Set<User> getAllUser()
 	{
 		return null;
 	}
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService
 	 * @see com.gdgtoledo.dockerkata.userservice.service.UserService#getAllAddressesByUserId(java.lang.String)
 	 */
 	@Override
-	public Collection<Address> getAllAddressesByUserId(String id)
+	public Set<Address> getAllAddressesByUserId(String id)
 	{
 		return null;
 	}
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService
 	 * @see com.gdgtoledo.dockerkata.userservice.service.UserService#getAllPhonesByUserId(java.lang.String)
 	 */
 	@Override
-	public Collection<Phone> getAllPhonesByUserId(String id)
+	public Set<Phone> getAllPhonesByUserId(String id)
 	{
 		return null;
 	}

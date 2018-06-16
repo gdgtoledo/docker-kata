@@ -1,6 +1,6 @@
 package com.gdgtoledo.dockerkata.userservice.mapper;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -10,17 +10,17 @@ import com.gdgtoledo.dockerkata.userservice.model.Phone;
 @Component
 public class PhoneMapper {
 	
-	public PhoneDto PhoneToPhoneDto(Phone phone) {
+	public PhoneDto phoneToPhoneDto(Phone phone) {
 
         return null;
     }
 
-    public Phone PhoneDtoToPhone(PhoneDto phoneDto) {
+    public Phone phoneDtoToPhone(PhoneDto phoneDto) {
 
         return null;
     }
     
-    public Collection<PhoneDto> PhoneCollectionToPhoneDtoCollection(Collection<Phone> phones)
+    public Set<PhoneDto> phoneSetToPhoneDtoSet(Set<Phone> phones)
     {
     	return null;
     }
