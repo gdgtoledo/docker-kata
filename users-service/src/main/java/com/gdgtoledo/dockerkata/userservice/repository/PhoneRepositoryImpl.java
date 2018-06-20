@@ -21,15 +21,15 @@ public class PhoneRepositoryImpl implements PhoneRepository {
 
     @Override
     public Set<Phone> getPhones(String userId) {
-         PhoneClient phoneClient = Feign.builder()
+        PhoneClient phoneClient = Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
                 .logger(new Slf4jLogger(PhoneClient.class))
                 .logLevel(Logger.Level.FULL)
-                 .target(PhoneClient.class, endpoint);
+                .target(PhoneClient.class, endpoint);
 
-         return phoneClient.getPhones(userId);
+        return phoneClient.getPhones(userId);
     }
 
 }
