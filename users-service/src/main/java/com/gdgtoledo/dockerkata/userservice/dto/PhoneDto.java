@@ -9,8 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class PhoneDto {
 
-	private String phoneNumber;
-	private String company;
-	private String type;
+    private String phoneNumber;
+    private String company;
+    private String type;
 
 }

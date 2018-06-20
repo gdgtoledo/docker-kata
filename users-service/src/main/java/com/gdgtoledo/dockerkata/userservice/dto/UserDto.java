@@ -12,12 +12,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class UserDto {
 
+    Set<AddressDto> addresses;
+    Set<PhoneDto> phones;
     private String userId;
     private String name;
     private String surname;
     private Instant birthdate;
-
-    Set<AddressDto> addresses;
-    Set<PhoneDto> phones;
 
 }
