@@ -26,13 +26,10 @@ public class UserMapper {
                 .build();
     }
 
-    public Set<UserDto> userSetToUserDtoSet(Set<User> users)
-    {
+    public Set<UserDto> userSetToUserDtoSet(Set<User> users) {
         Set<UserDto> usersDto = new HashSet<>();
 
-    	for (User user : users) {
-			usersDto.add(this.userToUserDto(user));
-		}
+        users.forEach(u -> usersDto.add(this.userToUserDto(u)));
 
         return usersDto;
     }
